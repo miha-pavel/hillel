@@ -10,7 +10,7 @@ import time, random
 #     print("for loop 2")
 #     print(i)
 
-#=========================
+# =========================
 # def gen():
 #     counter=0
 #     while counter<=10:
@@ -23,7 +23,7 @@ import time, random
 #     print("for loop")
 #     print(i)
 
-#=========
+# =========
 # for i in range(1000000000):
 #     print(i)
 
@@ -34,7 +34,7 @@ import time, random
 #         print(counter)
 #         yield counter
 #         counter+=1
-#=========
+# =========
 # my_gen=gen()
 # for i in gen():
 #     print("for loop")
@@ -43,15 +43,15 @@ import time, random
 # # for i in my_gen():
 # #     print("for loop qwe")
 # #     print(i)
-#=========
+# =========
 # my_gen = (i for i in range(10))
 # print(my_gen)
-#=========
+# =========
 # a = sum([i for i in range(10)])
 # b = sum((i for i in range(10)))
 # print(a)
 # print(b)
-#=========
+# =========
 # def add():
 #     time.sleep(random.randint(0, 3))
 #     return 10+10
@@ -60,13 +60,13 @@ import time, random
 # add()
 # print(time.time()-start)
 
-# #=========
+# =========
 # def decor(func):
 #     return func
 
 # add2 = decor(add)
 # print(add2())
-#=========
+# =========
 # def decor(func):
 #     def wrapper():
 #         start = time.time()
@@ -74,14 +74,14 @@ import time, random
 #         print(time.time()-start)
 #         return func
 #     return wrapper
-# #=======
+# =======
 # @decor
 # def add():
 #     time.sleep(random.randint(0, 3))
 #     return 10+10
 
 
-# # add = decor(add)
+# add = decor(add)
 # print(add())
 
 # class Human:
