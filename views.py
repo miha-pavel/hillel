@@ -56,8 +56,7 @@ def user_data():
                     user_email=fake_profile.get("mail"),
                     style=style_string
                     )
-    return users_table.format(users_data=users_data,
-                            style=style_string)
+    return users_table.format(users_data=users_data, style=style_string)
 
 
 @app.route('/average_params')
