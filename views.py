@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for, render_template
 # from random import string
 from faker import Faker
 from livereload import Server
@@ -19,22 +19,30 @@ fake = Faker()
 
 @app.route('/')
 def home_page():
-    return 'This Site is hometask '
+    return render_template('index.html')
 
 
 style_string = "style='border: 1px solid black;'"
 @app.route('/user_data')
 def user_data():
+    """Function generate 100 random users and create html template
+
+        Parameters:
+
+        Returns:
+        str: The html template which includes table with 100 random users
+    """
     users_table = """
         <h1>List 100 random Users</h1>
         <table {style}>
         <tr>
-            <th {style}>User Id</th>
+            <th {style}>User id</th>
             <th {style}>User name</th>
-            <th {style}>User Email</th>
+            <th {style}>User email</th>
         </tr>
         {users_data}
-        </table>"""
+        </table>
+        <a href="/">Back</a>"""
     users_data = ''
     for i in range(100):
         fake_profile = fake.simple_profile(sex=None)
@@ -54,6 +62,13 @@ def user_data():
 
 @app.route('/average_params')
 def average_params():
+    """Function read *.csv file and finds the average value each column
+
+    Parameters:
+
+    Returns:
+    str: The html template which includes table average height and weight data
+    """
     df = pd.read_csv('hw.csv', sep=',')
     header_list = df.columns.tolist()
     header_list.pop(0)
@@ -65,6 +80,7 @@ def average_params():
             <table {style}>
                 {average_param}
             </table>
+            <a href="/">Back</a>
         """
     for column_name in header_list:
         if height in column_name:
@@ -90,6 +106,13 @@ def average_params():
 
 @app.route('/astros')
 def astros():
+    """Function make a request to the URL and create html templates with astronaut list
+
+    Parameters:
+
+    Returns:
+    str: The html template which includes astronaut list
+    """
     url = 'http://api.open-notify.org/astros.json'
     responseJSON = requests.get(url).json()
     astros = """
@@ -98,14 +121,40 @@ def astros():
         <ul>
             {astronauts_list}
         </ul>
+        <a href="/">Back</a>
         """
     astronauts_list = ''
     for astronaut in responseJSON.get('people'):
         astronauts_list += "<li>{astronaut_name}</li>".format(
-                                    astronaut_name=astronaut.get("name"),
-                                    )
+                            astronaut_name=astronaut.get("name"),
+                            )
     return astros.format(astronauts_list=astronauts_list,
                         astronauts_count=responseJSON.get('number'))
+
+
+@app.route('/requir_list')
+def requir_list():
+    """Function read requirements.txt file and create html template
+    with list packages which were used in the project
+
+    Parameters:
+
+    Returns:
+    str: The html template which includes list packages
+    """
+    file_data = open("requirements.txt", "r")
+    requirements_list = """
+        <h1>List requirements</h1>
+        <p>In my Flask project I used next library:</p>
+        <ul>
+            {requir_list_item}
+        </ul>
+        <a href="/">Back</a>
+        """
+    requir_list_item = ''
+    for line in file_data:
+        requir_list_item += "<li>{line}</li>".format(line=line)
+    return requirements_list.format(requir_list_item=requir_list_item)
 
 
 if __name__ == "__main__":
