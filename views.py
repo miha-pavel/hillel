@@ -20,8 +20,43 @@ def home_page():
     return 'This Site is hometask '
 
 
+# @app.route('/gen')
+# def gen():
+#     return ''.join(
+#         random.choice(string.ascii_uppercase) for i in range(10)
+#     )
+
+
+@app.route('/user_data')
+def user_data():
+    style_string = "style='border: 1px solid black;'"
+    users_table = """<h1>List 100 random Users</h1>
+    <table style="border: 1px solid black;">
+    <tr>
+        <th {style}>User Id</th>
+        <th {style}>User name</th>
+        <th {style}>User Email</th>
+    </tr>
+    {users_data}
+    </table>"""
+    users_data = ''
+    for i in range(100):
+        fake_profile = fake.simple_profile(sex=None)
+        users_data = users_data + """<tr>
+                                        <td {style}>{user_id}</td>
+                                        <td {style}>{user_name}</td>
+                                        <td {style}>{user_email}</td>
+                                    </tr>""".format(
+                                    user_id=i+1,
+                                    user_name=fake_profile.get("name"),
+                                    user_email=fake_profile.get("mail"),
+                                    style=style_string
+                                    )
+    return users_table.format(users_data=users_data,
+                            style=style_string)
+
+
 if __name__ == "__main__":
-    # port=5001 можно изменить порт запуска Фласка
     app.run()
 
 
