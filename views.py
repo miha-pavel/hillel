@@ -3,6 +3,7 @@ from flask import Flask
 from faker import Faker
 from livereload import Server
 import pandas as pd
+import requests
 
 # app is a Flask object
 app = Flask('app')
@@ -24,28 +25,29 @@ def home_page():
 style_string = "style='border: 1px solid black;'"
 @app.route('/user_data')
 def user_data():
-    users_table = """<h1>List 100 random Users</h1>
-    <table {style}>
-    <tr>
-        <th {style}>User Id</th>
-        <th {style}>User name</th>
-        <th {style}>User Email</th>
-    </tr>
-    {users_data}
-    </table>"""
+    users_table = """
+        <h1>List 100 random Users</h1>
+        <table {style}>
+        <tr>
+            <th {style}>User Id</th>
+            <th {style}>User name</th>
+            <th {style}>User Email</th>
+        </tr>
+        {users_data}
+        </table>"""
     users_data = ''
     for i in range(100):
         fake_profile = fake.simple_profile(sex=None)
-        users_data = users_data + """<tr>
-                                        <td {style}>{user_id}</td>
-                                        <td {style}>{user_name}</td>
-                                        <td {style}>{user_email}</td>
-                                    </tr>""".format(
-                                    user_id=i+1,
-                                    user_name=fake_profile.get("name"),
-                                    user_email=fake_profile.get("mail"),
-                                    style=style_string
-                                    )
+        users_data += """<tr>
+                        <td {style}>{user_id}</td>
+                        <td {style}>{user_name}</td>
+                        <td {style}>{user_email}</td>
+                    </tr>""".format(
+                    user_id=i+1,
+                    user_name=fake_profile.get("name"),
+                    user_email=fake_profile.get("mail"),
+                    style=style_string
+                    )
     return users_table.format(users_data=users_data,
                             style=style_string)
 
@@ -59,14 +61,14 @@ def average_params():
     weight = "Weight"
     average_param = ""
     average_table = """
-                        <h1>Average Data</h1>
-                        <table {style}>
-                            {average_param}
-                        </table>
-                    """
+            <h1>Average Data</h1>
+            <table {style}>
+                {average_param}
+            </table>
+        """
     for column_name in header_list:
         if height in column_name:
-            average_param = average_param + """
+            average_param += """
                 <tr>
                     <td {style}>{height} (Cm)</td>
                     <td {style}>{height_data}</td>
@@ -84,6 +86,26 @@ def average_params():
             weight_data=round(df[column_name].mean()*0.453592, 2),
             style=style_string)
     return average_table.format(average_param=average_param, style=style_string)
+
+
+@app.route('/astros')
+def astros():
+    url = 'http://api.open-notify.org/astros.json'
+    responseJSON = requests.get(url).json()
+    astros = """
+        <h1>List astronauts</h1>
+        <h2>There are {astronauts_count} astronauts in orbit</h2>
+        <ul>
+            {astronauts_list}
+        </ul>
+        """
+    astronauts_list = ''
+    for astronaut in responseJSON.get('people'):
+        astronauts_list += "<li>{astronaut_name}</li>".format(
+                                    astronaut_name=astronaut.get("name"),
+                                    )
+    return astros.format(astronauts_list=astronauts_list,
+                        astronauts_count=responseJSON.get('number'))
 
 
 if __name__ == "__main__":
