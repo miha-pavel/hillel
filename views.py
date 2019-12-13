@@ -1,5 +1,4 @@
 from flask import Flask, url_for, render_template
-# from random import string
 from faker import Faker
 from livereload import Server
 import pandas as pd
