@@ -20,12 +20,12 @@ def home_page():
 
 @app.route('/user_data')
 def user_data():
-    return utils.user_data_module()
+    return utils.user_data_method()
 
 
 @app.route('/average_params')
 def average_params():
-    return utils.average_params_module()
+    return utils.average_params_method()
 
 
 @app.route('/all_customers')
@@ -36,12 +36,18 @@ def all_customers():
 
 @app.route('/astros')
 def astros():
-    return utils.astros_module()
+    return utils.astros_method()
+
+
+@app.route('/gen')
+def gen():
+    count = request.args["count"]
+    return utils.gen_method(count)
 
 
 @app.route('/req_list')
 def req_list():
-    return utils.req_module()
+    return utils.req_method()
 
 
 if __name__ == "__main__":
