@@ -78,6 +78,10 @@ def state_city():
                                 live in the {city} is:</p>
                             """
     result = exec_query(sql_query_strings.state_city_qs(city, state))
+    if not result:
+        customer_city_state = f"""
+                    <p>The list of customers who live in query place is empty:</p>
+                """
     response = response_header+customer_city_state+str(result)
     return response
 

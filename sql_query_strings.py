@@ -1,3 +1,6 @@
+from flask import abort
+
+
 def unique_name_qs():
     return """
                 SELECT DISTINCT count(FirstName)
@@ -31,6 +34,9 @@ def state_city_qs(city, state):
         query_string = f"""
                         SELECT *
                         FROM customers
-                        WHERE City=\'{city}\';
+                        WHERE City=\'{city}\'
+                        AND State ISNULL;
                     """
+    if not city:
+        abort(400)
     return query_string
