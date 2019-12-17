@@ -3,25 +3,27 @@ Hillel lessons
 
 
 ## Recommended Source
-```
 (https://pythonworld.ru/samouchitel-python)
 (https://pythontutor.ru)
 (https://ubuntubudgie.org/)
-```
+
 
 ## Before first launch
+```
 1. `pip install -r requirements.txt`
+```
+
 
 ## Run Flask project
-`python views.py`
-
+```
+python views.py
+```
 
 
 ## Home task
 This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
-```
+
 **Домашнее задание 1**
-----------------------
 Добавлено: 12.12.2019 21:28
 Написать вью функкции на фласке
 Создать пул реквест
@@ -30,11 +32,9 @@ This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
 2. [x] Вывести 100 случайно сгенерированных юзеров (почта + имя) ( https://pypi.org/project/Faker/ )
 3. [x] Средний рост, средний вес (см, кг) (hw.csv)
 4. [x] Получить количество космонавтов в настоящий момент (http://api.open-notify.org/astros.json) (https://pypi.org/project/requests/)
-```
 
-```
+
 **Домашнее задание 2**
-----------------------
 Добавлено: 15.12.2019 14:34
 Реализовать вью функции
 Создать пул реквест
