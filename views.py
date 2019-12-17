@@ -2,8 +2,8 @@ from flask import Flask, url_for, render_template, request
 from livereload import Server
 
 import utils
+import sql_query_strings
 from query_db import exec_query
-
 # app is a Flask object
 app = Flask('app')
 
@@ -36,7 +36,16 @@ def astros():
 @app.route('/gen')
 def gen():
     count = request.args["count"]
-    return utils.gen_method(count)
+    result = utils.gen_method(count)
+    response = f"""
+                <h1>The task of generation random letters</h1>
+                <h2>The task is</h2>
+                <p>Вью функция должна принимать параметр который
+                регулирует количество символов</p>
+                <p>My result is the {count} random letters:</p>
+                 {result}
+            """
+    return response
 
 
 @app.route('/req_list')
@@ -46,31 +55,56 @@ def req_list():
 
 @app.route('/all_customers')
 def all_customers():
-    query_string = f"""
-                        SELECT *
-                        FROM customers
-                        WHERE Country =\'{request.args["Country"]}\';
-                    """
-    result = exec_query(query_string)
-    return str(result)
+    return str(exec_query(sql_query_strings.all_customers_qs(request.args["Country"])))
 
 
 @app.route('/state_city')
 def state_city():
-    query_string = f"""
-                        SELECT *
-                        FROM customers
-                        WHERE City=\'{request.args.get("city", "Null")}\'
-                        AND State=\'{request.args.get("state", "Null")}\';
+    city = request.args.get("city", '')
+    state = request.args.get("state", '')
+    response_header = """
+                        <h1>The task of City, State filter</h1>
+                        <h2>The task is</h2> 
+                        <p>Вью функция должна фильтровать таблицу
+                        кастомерс по Штату И Городу</p>
+                        
                     """
-    if not request.args.get("state", ""):
-        query_string = f"""
-                        SELECT *
-                        FROM customers
-                        WHERE City=\'{request.args.get("city", "Null")}\'
-                    """
-    result = exec_query(query_string)
-    return str(result)
+    customer_city_state = f"""
+                    <p>The list of customers which live in the {city} state {state} is:</p>
+                """
+    if not state:
+        customer_city_state = f"""
+                                <p>The list of customers which
+                                live in the {city} is:</p>
+                            """
+    result = exec_query(sql_query_strings.state_city_qs(city, state))
+    response = response_header+customer_city_state+str(result)
+    return response
+
+
+@app.route('/unique_name')
+def unique_name():
+    result = exec_query(sql_query_strings.unique_name_qs())[0][0]
+    response = f"""
+                <h1>The task about unique name count</h1>
+                <h2>The task is</h2>
+                <p>Вью функция должна выводить количество уникальных имен
+                (FirstName) из таблицы кастомерс</p>
+                <p>My result is the count of the unique names equals: {result}</p>
+            """
+    return response
+
+
+@app.route('/profit')
+def profit():
+    result = exec_query(sql_query_strings.profit_qs())[0][0]
+    response = f"""
+                    <h1>The task of the common profit </h1>
+                    <h2>The task is</h2>
+                    <p>Вывести общую прибыль из колонки invoice_items ((UnitPrice * Quantity) + ...)</p>
+                    <p>My result is common profit equals: {result}</p>
+                """
+    return response
 
 
 if __name__ == "__main__":
