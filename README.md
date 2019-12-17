@@ -24,7 +24,6 @@ python views.py
 This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
 
 ### Домашнее задание 1
-
 Добавлено: 12.12.2019 21:28
 
 Написать вью функкции на фласке.
@@ -38,7 +37,6 @@ This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
 
 
 ### Домашнее задание 2
-
 Добавлено: 15.12.2019 14:34
 
 Реализовать вью функции.
