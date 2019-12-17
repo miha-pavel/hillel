@@ -23,7 +23,7 @@ python views.py
 ## Home task
 This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
 
-**Домашнее задание 1**
+### Домашнее задание 1
 
 Добавлено: 12.12.2019 21:28
 
@@ -37,9 +37,7 @@ This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
 4. [x] Получить количество космонавтов в настоящий момент (http://api.open-notify.org/astros.json) (https://pypi.org/project/requests/)
 
 
-**----------------------**
-
-**Домашнее задание 2**
+### Домашнее задание 2
 
 Добавлено: 15.12.2019 14:34
 
