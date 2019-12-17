@@ -43,7 +43,7 @@ def gen():
                 <p>Вью функция должна принимать параметр который
                 регулирует количество символов</p>
                 <p>My result is the {count} random letters:</p>
-                 {result}
+                {result}
             """
     return response
 
@@ -67,7 +67,6 @@ def state_city():
                         <h2>The task is</h2> 
                         <p>Вью функция должна фильтровать таблицу
                         кастомерс по Штату И Городу</p>
-                        
                     """
     customer_city_state = f"""
                     <p>The list of customers which live in the {city} state {state} is:</p>
@@ -94,7 +93,7 @@ def unique_name():
                 <h2>The task is</h2>
                 <p>Вью функция должна выводить количество уникальных имен
                 (FirstName) из таблицы кастомерс</p>
-                <p>My result is the count of the unique names equals: {result}</p>
+                <p>My result is the count of the unique names equals {result}</p>
             """
     return response
 
@@ -106,7 +105,7 @@ def profit():
                     <h1>The task of the common profit </h1>
                     <h2>The task is</h2>
                     <p>Вывести общую прибыль из колонки invoice_items ((UnitPrice * Quantity) + ...)</p>
-                    <p>My result is common profit equals: {result}</p>
+                    <p>My result is common profit equals {result}</p>
                 """
     return response
 
