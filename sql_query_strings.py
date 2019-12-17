@@ -25,17 +25,15 @@ def all_customers_qs(country):
 
 def state_city_qs(city, state):
     query_string = f"""
-                        SELECT *
-                        FROM customers
-                        WHERE City=\'{city}\'
-                        AND State=\'{state}\';
-                    """
+                    SELECT *
+                    FROM customers
+                    WHERE City=\'{city}\' AND State=\'{state}\';
+                """
     if not state:
         query_string = f"""
                         SELECT *
                         FROM customers
-                        WHERE City=\'{city}\'
-                        AND State ISNULL;
+                        WHERE City=\'{city}\';
                     """
     if not city:
         abort(400)
