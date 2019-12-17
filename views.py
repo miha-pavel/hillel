@@ -28,12 +28,6 @@ def average_params():
     return utils.average_params_method()
 
 
-@app.route('/all_customers')
-def all_customers():
-    result = exec_query(f'SELECT * FROM customers WHERE Country =\'{request.args["Country"]}\';')
-    return str(result)
-
-
 @app.route('/astros')
 def astros():
     return utils.astros_method()
@@ -48,6 +42,35 @@ def gen():
 @app.route('/req_list')
 def req_list():
     return utils.req_method()
+
+
+@app.route('/all_customers')
+def all_customers():
+    query_string = f"""
+                        SELECT *
+                        FROM customers
+                        WHERE Country =\'{request.args["Country"]}\';
+                    """
+    result = exec_query(query_string)
+    return str(result)
+
+
+@app.route('/state_city')
+def state_city():
+    query_string = f"""
+                        SELECT *
+                        FROM customers
+                        WHERE City=\'{request.args.get("city", "Null")}\'
+                        AND State=\'{request.args.get("state", "Null")}\';
+                    """
+    if not request.args.get("state", ""):
+        query_string = f"""
+                        SELECT *
+                        FROM customers
+                        WHERE City=\'{request.args.get("city", "Null")}\'
+                    """
+    result = exec_query(query_string)
+    return str(result)
 
 
 if __name__ == "__main__":
