@@ -24,8 +24,7 @@ python views.py
 This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
 
 **Домашнее задание 1**
-Добавлено: 12.12.2019 21:28
-
+Добавлено: 12.12.2019 21:28\n
 Написать вью функкции на фласке.
 
 Создать пул реквест.
