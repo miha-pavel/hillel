@@ -2,20 +2,23 @@
 Hillel lessons
 
 
-Recommended Source
-------------------
+## Recommended Source
 ```
 (https://pythonworld.ru/samouchitel-python)
 (https://pythontutor.ru)
 (https://ubuntubudgie.org/)
 ```
 
+## Before first launch
+1. `pip install -r requirements.txt`
 
-Home task
----------
-```
+## Run Flask project
+`python views.py`
+
+
+
+## Home task
 This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
-```
 ```
 **Домашнее задание 1**
 ----------------------
