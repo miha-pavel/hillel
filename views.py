@@ -69,8 +69,8 @@ def state_city():
                         кастомерс по Штату И Городу</p>
                     """
     customer_city_state = f"""
-                    <p>The list of customers which live in the {city} state {state} is:</p>
-                """
+                            <p>The list of customers which live in the {city} state {state} is:</p>
+                        """
     if not state:
         customer_city_state = f"""
                                 <p>The list of customers which
@@ -79,8 +79,8 @@ def state_city():
     result = exec_query(sql_query_strings.state_city_qs(city, state))
     if not result:
         customer_city_state = f"""
-                    <p>The list of customers who live in query place is empty:</p>
-                """
+                                <p>The list of customers who live in query place is empty:</p>
+                            """
     response = response_header+customer_city_state+str(result)
     return response
 
@@ -102,11 +102,11 @@ def unique_name():
 def profit():
     result = exec_query(sql_query_strings.profit_qs())[0][0]
     response = f"""
-                    <h1>The task of the common profit </h1>
-                    <h2>The task is</h2>
-                    <p>Вывести общую прибыль из колонки invoice_items ((UnitPrice * Quantity) + ...)</p>
-                    <p>My result is common profit equals {result}</p>
-                """
+                <h1>The task of the common profit </h1>
+                <h2>The task is</h2>
+                <p>Вывести общую прибыль из колонки invoice_items ((UnitPrice * Quantity) + ...)</p>
+                <p>My result is common profit equals {result}</p>
+            """
     return response
 
 
