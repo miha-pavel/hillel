@@ -5,16 +5,16 @@ Hillel lessons
 Recommended Source
 ------------------
 ```
-https://pythonworld.ru/samouchitel-python
-https://pythontutor.ru
-https://ubuntubudgie.org/
+(https://pythonworld.ru/samouchitel-python)
+(https://pythontutor.ru)
+(https://ubuntubudgie.org/)
 ```
 
 
 Home task
 ---------
 ```
-https://github.com/miha-pavel/hillel
+This site locate [GitHub Pages](https://github.com/miha-pavel/hillel)
 ```
 ```
 **Домашнее задание 1**
