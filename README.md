@@ -3,9 +3,9 @@ Hillel lessons
 
 
 ## Recommended Source
-(https://pythonworld.ru/samouchitel-python)
-(https://pythontutor.ru)
-(https://ubuntubudgie.org/)
+1. https://pythonworld.ru/samouchitel-python
+2. https://pythontutor.ru
+3. https://ubuntubudgie.org/
 
 
 ## Before first launch
