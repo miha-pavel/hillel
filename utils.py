@@ -1,5 +1,8 @@
 import os
+import random
+import string
 
+from flask import abort
 import requests
 import pandas as pd
 from faker import Faker
@@ -10,7 +13,7 @@ fake = Faker()
 style_string = "style='border: 1px solid black;'"
 
 
-def req_module():
+def req_method():
     """Function read requirements.txt file and create html template
     with list packages which were used in the project
 
@@ -35,7 +38,7 @@ def req_module():
     return requirements_list.format(req_list_item=req_list_item)
 
 
-def astros_module():
+def astros_method():
     """
     Function make a request to the URL and create html
     templates with astronaut list
@@ -65,7 +68,7 @@ def astros_module():
         astronauts_count=responseJSON.get('number'))
 
 
-def user_data_module():
+def user_data_method():
     """Function generate 100 random users and create html template
 
         Parameters:
@@ -100,7 +103,7 @@ def user_data_module():
     return users_table.format(users_data=users_data, style=style_string)
 
 
-def average_params_module():
+def average_params_method():
     """Function read *.csv file and finds the average value each column
 
     Parameters:
@@ -145,3 +148,25 @@ def average_params_module():
     return average_table.format(
         average_param=average_param,
         style=style_string)
+
+
+def gen_method(count):
+    """Function return string with an uppercase letter.
+    The letters count equals the query parameter.
+    The function has validation of the query parameter.
+    Is the query parameter is a positive integer.
+
+    Parameters:
+        count(str): the query parameter is a count of letters
+
+    Returns:
+        str: the string of uppercase letters
+    """
+    try:
+        int_count = int(count)
+        if (int_count > 0):
+            return ''.join(random.choice(string.ascii_uppercase) for i in range(int_count))
+        else:
+            abort(400)
+    except ValueError:
+        abort(400)
