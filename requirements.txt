@@ -11,7 +11,7 @@ Jinja2==2.10.3
 livereload==2.6.1
 MarkupSafe==1.1.1
 mccabe==0.6.1
-numpy==1.17.4
+numpy==1.22.0
 pandas==0.25.3
 pycodestyle==2.5.0
 pyflakes==2.1.1
